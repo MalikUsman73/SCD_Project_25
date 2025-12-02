@@ -1,0 +1,33 @@
+[
+  {
+    "_id": "692e1161adec5bbca426e470",
+    "name": "Malik Usman Gohar",
+    "value": "44"
+  },
+  {
+    "_id": "692e11dfadec5bbca426e471",
+    "name": "Abdullah",
+    "value": "32"
+  },
+  {
+    "_id": "692e175ca01871de49a708d4",
+    "name": "Myname",
+    "value": "87",
+    "createdAt": "2025-12-01T22:31:56.004Z",
+    "updatedAt": "2025-12-01T22:31:56.004Z"
+  },
+  {
+    "_id": "692e1b3729e09e6c2ec3074a",
+    "name": "newrecord",
+    "value": "88",
+    "createdAt": "2025-12-01T22:48:23.729Z",
+    "updatedAt": "2025-12-01T22:48:23.729Z"
+  },
+  {
+    "_id": "692e8b9a48b686d67e379889",
+    "name": "Rizwan",
+    "value": "23",
+    "createdAt": "2025-12-02T06:47:54.000Z",
+    "updatedAt": "2025-12-02T06:47:54.000Z"
+  }
+]

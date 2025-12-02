@@ -1,40 +1,32 @@
-const fileDB = require('./file');
-const recordUtils = require('./record');
-const vaultEvents = require('../events');
+const { connectDB } = require("./mongo");
 
-function addRecord({ name, value }) {
-  recordUtils.validateRecord({ name, value });
-  const data = fileDB.readDB();
-  const newRecord = { id: recordUtils.generateId(), name, value };
-  data.push(newRecord);
-  fileDB.writeDB(data);
-  vaultEvents.emit('recordAdded', newRecord);
-  return newRecord;
-}
-
-function listRecords() {
-  return fileDB.readDB();
-}
-
-function updateRecord(id, newName, newValue) {
-  const data = fileDB.readDB();
-  const record = data.find(r => r.id === id);
-  if (!record) return null;
-  record.name = newName;
-  record.value = newValue;
-  fileDB.writeDB(data);
-  vaultEvents.emit('recordUpdated', record);
+async function addRecord({ name, value }) {
+  const db = await connectDB();
+  const record = { name, value, createdAt: new Date() };
+  await db.collection("records").insertOne(record);
   return record;
 }
 
-function deleteRecord(id) {
-  let data = fileDB.readDB();
-  const record = data.find(r => r.id === id);
-  if (!record) return null;
-  data = data.filter(r => r.id !== id);
-  fileDB.writeDB(data);
-  vaultEvents.emit('recordDeleted', record);
-  return record;
+async function listRecords() {
+  const db = await connectDB();
+  return await db.collection("records").find().toArray();
+}
+
+async function updateRecord(id, name, value) {
+  const db = await connectDB();
+  const { ObjectId } = require("mongodb");
+
+  return await db.collection("records").updateOne(
+    { _id: new ObjectId(id) },
+    { $set: { name, value } }
+  );
+}
+
+async function deleteRecord(id) {
+  const db = await connectDB();
+  const { ObjectId } = require("mongodb");
+
+  return await db.collection("records").deleteOne({ _id: new ObjectId(id) });
 }
 
 module.exports = { addRecord, listRecords, updateRecord, deleteRecord };

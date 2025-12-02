@@ -1,0 +1,27 @@
+Export Date: 12/2/2025, 3:35:57 AM
+Total Records: 4
+==========================
+ID: 692e1161adec5bbca426e470
+Name: Malik Usman Gohar
+Value: 44
+CreatedAt: undefined
+UpdatedAt: undefined
+------------------
+ID: 692e11dfadec5bbca426e471
+Name: Abdullah
+Value: 32
+CreatedAt: undefined
+UpdatedAt: undefined
+------------------
+ID: 692e16145bf22ac094544f49
+Name: Zaki Haider
+Value: 23
+CreatedAt: Tue Dec 02 2025 03:26:28 GMT+0500 (Pakistan Standard Time)
+UpdatedAt: Tue Dec 02 2025 03:26:28 GMT+0500 (Pakistan Standard Time)
+------------------
+ID: 692e175ca01871de49a708d4
+Name: Myname
+Value: 87
+CreatedAt: Tue Dec 02 2025 03:31:56 GMT+0500 (Pakistan Standard Time)
+UpdatedAt: Tue Dec 02 2025 03:31:56 GMT+0500 (Pakistan Standard Time)
+------------------
