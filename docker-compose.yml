@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: nodevault-database
+    restart: always
+    ports:
+      - "27018:27017"
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+
+    volumes:
+      - mongo-data:/data/db
+    
+    networks:
+      - nodevault-net
+    
+  backend:
+    image: ${BACKEND_IMAGE:-nodevault-backend:latest} 
+    
+    # CRITICAL FIX: The build context is set to the current directory (.), 
+    # as your Dockerfile is in the root of the project.
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: nodevault-backend
+    restart: always
+    
+    depends_on:
+      mongodb:
+        condition: service_started
+      
+    ports:
+      - "3000:3000"
+
+    environment:
+      MONGO_URI: ${MONGO_URI}
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
+
+    tty: true 
+
+    networks:
+      - nodevault-net
+
+volumes:
+  mongo-data: {}
+
+networks:
+  nodevault-net:
+    driver: bridge
